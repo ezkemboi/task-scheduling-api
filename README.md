@@ -8,6 +8,10 @@ These are NodeJS API for task scheduling solution
 - Start: `npm start`
 - Test: `npm run test`
 
+# Deployment 
+
+[Click here](https://task-scheduling-api.herokuapp.com/)
+
 # Licence 
 
 - MIT

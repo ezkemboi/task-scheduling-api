@@ -7,10 +7,13 @@
     "start:dev": "nodemon --exec babel-node src/app.js",
     "build": "babel src --out-dir dist --source-maps inline --copy-files",
     "start": "node dist/app.js",
-    "test": "npm run lint:fix && nyc --reporter=text mocha test/**/*.js --require @babel/register --exit",
+    "test": "export NODE_ENV=test && npm run lint:fix &&  npm run create:tables && nyc --reporter=text mocha test/**/*.js --require @babel/register --exit",
+    "only:test": "export NODE_ENV=test && nyc --reporter=text mocha test/**/*.js --require @babel/register --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "create:tables": "babel-node src/utils/createtables.js",
+    "drop:tables": "babel-node src/utils/droptables.js"
   },
   "repository": {
     "type": "git",
@@ -60,6 +63,6 @@
     "prettier": "^1.19.1"
   },
   "husky": {
-    "pre-push": "npm test"
+    "pre-push": "npm run lint:fix"
   }
 }

@@ -51,7 +51,7 @@ describe("Return App", () => {
         password: "password"
       });
     const { status } = result;
-    expect(status).to.be.equal(201);
+    expect(status).to.be.equal(200);
   });
 
   it("should return password does not match", async () => {
@@ -61,7 +61,7 @@ describe("Return App", () => {
       .set("content-type", "application/json")
       .send({
         phone: "0723573456",
-        password: "passwordnotmatch"
+        password: "doesnotmatch"
       });
     const { status, body } = result;
     expect(status).to.be.equal(400);

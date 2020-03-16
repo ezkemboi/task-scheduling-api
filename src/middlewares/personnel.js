@@ -4,7 +4,6 @@ const personnelMiddleware = (req, res, next) => {
    * Add custom validation using
    * middlware that suport validations
    */
-
   if (!phone || !password) {
     return res.status(400).send({
       message: "Please provide phone or password"

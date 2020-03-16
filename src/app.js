@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import passport from 'passport';
+import passport from "passport";
 import routes from "./routes";
+import "./config/passport";
 
 dotenv.config();
 const app = express();

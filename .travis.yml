@@ -6,6 +6,13 @@ cache:
   directories:
     - node_modules
 
+before_install:
+  - sudo apt-get install postgresql-9.5
+
+before_script:
+  - psql -c 'CREATE DATABASE travis;' -U postgres
+  - psql -c 'CREATE DATABASE test;' -U postgres
+
 script: 
   - npm test
 

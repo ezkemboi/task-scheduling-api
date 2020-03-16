@@ -12,11 +12,60 @@ describe("Return App", () => {
     expect(body.message).to.be.equal("Welcome to Task Scheduling");
   });
 
-  it("should post to sample login", async () => {
-    const result = await chai.request(app).post("/personnel/login");
+  it("should return 400 when phone is not provided", async () => {
+    const result = await chai
+      .request(app)
+      .post("/personnel/login")
+      .set("content-type", "application/json")
+      .send({
+        password: "password"
+      });
     const { status, body } = result;
+    expect(status).to.be.equal(400);
+    expect(body.message).to.be.equal("Please provide phone or password");
+  });
+
+  it("should return 400 when password is short", async () => {
+    const result = await chai
+      .request(app)
+      .post("/personnel/login")
+      .set("content-type", "application/json")
+      .send({
+        phone: "0723573456",
+        password: "pass"
+      });
+    const { status, body } = result;
+    expect(status).to.be.equal(400);
+    expect(body.message).to.be.equal(
+      "Password provided is short. Use more than 6 chars"
+    );
+  });
+
+  it("should post to sample login", async () => {
+    const result = await chai
+      .request(app)
+      .post("/personnel/login")
+      .set("content-type", "application/json")
+      .send({
+        phone: "0723573456",
+        password: "password"
+      });
+    const { status } = result;
     expect(status).to.be.equal(200);
-    expect(body.message).to.be.equal("Successfully logged in");
+  });
+
+  it("should return password does not match", async () => {
+    const result = await chai
+      .request(app)
+      .post("/personnel/login")
+      .set("content-type", "application/json")
+      .send({
+        phone: "0723573456",
+        password: "doesnotmatch"
+      });
+    const { status, body } = result;
+    expect(status).to.be.equal(400);
+    expect(body.message).to.be.equal("Password does not match");
   });
 
   it("should return sample tasks", async () => {

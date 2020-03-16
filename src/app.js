@@ -1,11 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
+import passport from 'passport';
 import routes from "./routes";
 
 dotenv.config();
 const app = express();
 
+app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/", routes);

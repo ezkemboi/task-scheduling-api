@@ -50,9 +50,8 @@ describe("Return App", () => {
         phone: "0723573456",
         password: "password"
       });
-    const { status, body } = result;
+    const { status } = result;
     expect(status).to.be.equal(201);
-    expect(body.message).to.be.equal("Successfully created a new user");
   });
 
   it("should return password does not match", async () => {
@@ -66,7 +65,7 @@ describe("Return App", () => {
       });
     const { status, body } = result;
     expect(status).to.be.equal(400);
-    expect(body.message).to.be.equal("Password doesn't match");
+    expect(body.message).to.be.equal("Password does not match");
   });
 
   it("should return sample tasks", async () => {

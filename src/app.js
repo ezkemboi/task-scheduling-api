@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import passport from "passport";
-import cors from 'cors';
+import cors from "cors";
 import routes from "./routes";
 import "./config/passport";
 

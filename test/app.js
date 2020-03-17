@@ -71,7 +71,7 @@ describe("Return App", () => {
   });
 
   it("should return sample tasks", async () => {
-    const result = await chai.request(app).post("/tasks/assigned");
+    const result = await chai.request(app).get("/tasks/assigned");
     const { status, body } = result;
     expect(status).to.be.equal(200);
     expect(body.tasks.length).to.be.greaterThan(1);

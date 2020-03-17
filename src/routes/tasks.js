@@ -7,7 +7,7 @@ const router = new Router();
 // GET -> get tasks router
 router
   .route("/assigned")
-  .post(TasksMiddleware, TasksController.getAssignedTasks);
+  .get(TasksMiddleware, TasksController.getAssignedTasks);
 
 // add error handler
 

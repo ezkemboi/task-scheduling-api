@@ -10,12 +10,15 @@ export default class PersonnelController {
       async (err, user, info) => {
         if (err) {
           return res.status(400).send({
-            message: "Password does not match"
+            error: {
+              message: "You have entered an incorrect password"
+            }
           });
         }
         const { accessToken } = user;
         const { expiresIn } = info;
         return res.status(200).send({
+          resetPassword: 0,
           accessToken,
           expiresIn
         });

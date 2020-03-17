@@ -22,7 +22,7 @@ describe("Return App", () => {
       });
     const { status, body } = result;
     expect(status).to.be.equal(400);
-    expect(body.message).to.be.equal("Please provide phone or password");
+    expect(body.error.message).to.be.equal("Please provide phone or password");
   });
 
   it("should return 400 when password is short", async () => {
@@ -36,7 +36,7 @@ describe("Return App", () => {
       });
     const { status, body } = result;
     expect(status).to.be.equal(400);
-    expect(body.message).to.be.equal(
+    expect(body.error.message).to.be.equal(
       "Password provided is short. Use more than 6 chars"
     );
   });
@@ -65,13 +65,15 @@ describe("Return App", () => {
       });
     const { status, body } = result;
     expect(status).to.be.equal(400);
-    expect(body.message).to.be.equal("Password does not match");
+    expect(body.error.message).to.be.equal(
+      "You have entered an incorrect password"
+    );
   });
 
   it("should return sample tasks", async () => {
     const result = await chai.request(app).post("/tasks/assigned");
     const { status, body } = result;
     expect(status).to.be.equal(200);
-    expect(body.message).to.be.equal("Tasks retrieved successfully");
+    expect(body.tasks.length).to.be.greaterThan(1);
   });
 });
